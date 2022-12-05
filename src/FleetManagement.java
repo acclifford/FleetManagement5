@@ -87,22 +87,7 @@ public class FleetManagement {
         }   catch(Exception e){
                 e.printStackTrace();
             }
-/*
-        //--The try-catch block reads the file
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(path));
 
-            while ((line = br.readLine()) != null) {
-                String[] values = line.split(",");
-                newBoat = createBoat(values);
-                fleet.add(newBoat);
-
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e){
-            e.printStackTrace();
-        }*/
             //--Returning the fleet ArrayList of Boat objects created
             return (fleet);
 
