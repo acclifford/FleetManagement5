@@ -16,7 +16,7 @@ public class FleetManagement {
 
     //-----------------------------------------------------------------------
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
 
         //--Here we initialize the ArrayList and specify the file that we are importing for the CSV file
         ArrayList<Boat> fleet = new ArrayList<Boat>();
@@ -70,7 +70,7 @@ public class FleetManagement {
     }
 
     //-----------------------------------------------------------------------
-    private static ArrayList<Boat> initFromObjectFile(String path, ArrayList<Boat>fleet) {
+    private static ArrayList<Boat> initFromObjectFile(String path, ArrayList<Boat>fleet) throws IOException, ClassNotFoundException{
 
         //--This method takes the file path from the main and the ArrayList and reads the db file
         String line = "";
