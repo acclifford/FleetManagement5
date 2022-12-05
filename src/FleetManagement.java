@@ -18,9 +18,21 @@ public class FleetManagement {
     public static void main(String[] args) {
 
         //--Here we initialize the ArrayList and specify the file that we are importing for the CSV file
-        ArrayList<Boat>fleet = new ArrayList<Boat>();
-        String path = "C:\\Users\\Ailis\\Desktop\\CSC120_LAB\\FleetData.csv";
-        initFromCSVFile(path, fleet);
+        ArrayList<Boat> fleet = new ArrayList<Boat>();
+
+        if (args.length > ZERO) {
+            try {
+                String path = "C:\\Users\\Ailis\\Desktop\\CSC120_LAB\\FleetData.csv";
+                fleet = initFromCSVFile(path, fleet);
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
+        } else {
+            String path = "C:\\Users\\Ailis\\Desktop\\CSC120_LAB\\FleetData.db";
+            fleet = initFromObjectFile(path,fleet);
+        }
+        //String path = "C:\\Users\\Ailis\\Desktop\\CSC120_LAB\\FleetData.csv";
+        //initFromCSVFile(path, fleet);
 
         //--This calls the menu and will run through the menu until "exit" is selected
         menu(fleet);
@@ -33,7 +45,7 @@ public class FleetManagement {
 
     private static ArrayList<Boat> initFromCSVFile(String path, ArrayList<Boat>fleet) {
 
-        //--This method takes the file path from the main and the ArrayList and reads the file
+        //--This method takes the file path from the main and the ArrayList and reads the CSV file
         String line = "";
         Boat newBoat = new Boat();
 
@@ -56,6 +68,31 @@ public class FleetManagement {
         return(fleet);
     }
 
+    //-----------------------------------------------------------------------
+    private static ArrayList<Boat> initFromObjectFile(String path, ArrayList<Boat>fleet){
+
+        //--This method takes the file path from the main and the ArrayList and reads the db file
+        String line = "";
+        Boat newBoat = new Boat();
+
+        //--The try-catch block reads the file
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(path));
+
+            while ((line = br.readLine()) != null) {
+                String[] values = line.split(",");
+                newBoat = createBoat(values);
+                fleet.add(newBoat);
+
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+        //--Returning the fleet ArrayList of Boat objects created
+        return(fleet);
+    }
     //-----------------------------------------------------------------------
     public static void writeFleetObjectFile(ArrayList<Boat>fleet){
 
