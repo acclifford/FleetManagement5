@@ -101,9 +101,10 @@ public class FleetManagement {
         int index;
         try{
             ObjectOutputStream writeObject = new ObjectOutputStream(new FileOutputStream(newFleetData));
-            for(index = ZERO; index < fleet.size(); index++){
-                writeObject.writeObject(fleet.get(index));
-            }
+            writeObject.writeObject(fleet);
+            //for(index = ZERO; index < fleet.size(); index++){
+               // writeObject.writeObject(fleet.get(index));
+            //}
             writeObject.close();
         } catch(IOException e){
             e.printStackTrace();
