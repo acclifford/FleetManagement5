@@ -1,3 +1,4 @@
+import java.rmi.server.ExportException;
 import java.util.*;
 import java.io.*;
 import java.io.FileNotFoundException;
@@ -69,12 +70,24 @@ public class FleetManagement {
     }
 
     //-----------------------------------------------------------------------
-    private static ArrayList<Boat> initFromObjectFile(String path, ArrayList<Boat>fleet){
+    private static ArrayList<Boat> initFromObjectFile(String path, ArrayList<Boat>fleet) {
 
         //--This method takes the file path from the main and the ArrayList and reads the db file
         String line = "";
         Boat newBoat = new Boat();
 
+        try {
+            FileInputStream newFile = new FileInputStream(path);
+            ObjectInputStream newObject = new ObjectInputStream(newFile);
+            while ((line = String.valueOf(newObject.read())) != null) {
+                String[] values = line.split(",");
+                newBoat = createBoat(values);
+                fleet.add(newBoat);
+            }
+        }   catch(Exception e){
+                e.printStackTrace();
+            }
+/*
         //--The try-catch block reads the file
         try {
             BufferedReader br = new BufferedReader(new FileReader(path));
@@ -89,9 +102,10 @@ public class FleetManagement {
             e.printStackTrace();
         } catch (IOException e){
             e.printStackTrace();
-        }
-        //--Returning the fleet ArrayList of Boat objects created
-        return(fleet);
+        }*/
+            //--Returning the fleet ArrayList of Boat objects created
+            return (fleet);
+
     }
     //-----------------------------------------------------------------------
     public static void writeFleetObjectFile(ArrayList<Boat>fleet){
