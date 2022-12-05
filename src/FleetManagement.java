@@ -32,8 +32,7 @@ public class FleetManagement {
             String path = "C:\\Users\\Ailis\\Desktop\\CSC120_LAB\\FleetData.db";
             fleet = initFromObjectFile(path,fleet);
         }
-        //String path = "C:\\Users\\Ailis\\Desktop\\CSC120_LAB\\FleetData.csv";
-        //initFromCSVFile(path, fleet);
+
 
         //--This calls the menu and will run through the menu until "exit" is selected
         menu(fleet);
