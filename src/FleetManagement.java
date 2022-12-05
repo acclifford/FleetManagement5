@@ -79,7 +79,7 @@ public class FleetManagement {
         try {
             FileInputStream newFile = new FileInputStream(path);
             ObjectInputStream getObject = new ObjectInputStream(newFile);
-            Object object = null;
+
             fleet = (ArrayList<Boat>)getObject.readObject();
 
             getObject.close();
