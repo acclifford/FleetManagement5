@@ -80,13 +80,17 @@ public class FleetManagement {
             FileInputStream newFile = new FileInputStream(path);
             ObjectInputStream getObject = new ObjectInputStream(newFile);
             Object object = null;
-            while ((object = getObject.readObject()) != null);{
-                fleet.add((Boat)object);
-            }
+            fleet = (ArrayList<Boat>)getObject.readObject();
+            //while ((object = getObject.readObject()) != null);{
+                //fleet.add((Boat)object);
+            //}
             getObject.close();
+            newFile.close();
+
         }   catch(Exception e){
                 e.printStackTrace();
             }
+
 
             //--Returning the fleet ArrayList of Boat objects created
             return (fleet);
