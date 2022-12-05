@@ -78,12 +78,12 @@ public class FleetManagement {
 
         try {
             FileInputStream newFile = new FileInputStream(path);
-            ObjectInputStream newObject = new ObjectInputStream(newFile);
-            while ((line = String.valueOf(newObject.read())) != null) {
-                String[] values = line.split(",");
-                newBoat = createBoat(values);
-                fleet.add(newBoat);
+            ObjectInputStream getObject = new ObjectInputStream(newFile);
+            Object object = null;
+            while ((object = getObject.readObject()) != null);{
+                fleet.add((Boat)object);
             }
+            getObject.close();
         }   catch(Exception e){
                 e.printStackTrace();
             }
